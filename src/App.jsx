@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "semantic-ui-css/semantic.min.css";
+import "./_variables.scss";
 import "./styles.scss";
 
 import AppContextProvider from "./components/AppContextProvider/AppContextProvider.js";
