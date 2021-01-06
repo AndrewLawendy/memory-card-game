@@ -1,0 +1,19 @@
+@import "variables";
+
+@font-face {
+  font-family: "Press Start";
+  src: url("/../assets/fonts/PressStart2P-Regular.ttf") format("truetype");
+}
+
+*:not(i) {
+  font-family: "Press Start", Courier, monospace !important;
+}
+
+:global .title {
+  color: $yellow;
+  text-shadow: 4px 4px #000;
+}
+
+h1 {
+  font-size: 3.2rem;
+}

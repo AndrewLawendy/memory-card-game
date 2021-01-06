@@ -1,5 +1,5 @@
 import React from "react";
-import { AppContext } from "../appContext/AppContext.js";
+import { AppContext } from "../AppContext/AppContext.js";
 
 const AppContextProvider = ({ children }) => {
   return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;

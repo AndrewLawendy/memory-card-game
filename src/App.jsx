@@ -2,11 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "semantic-ui-css/semantic.min.css";
+import "./styles.scss";
 
-import AppContextProvider from "./components/appContextProvider/AppContextProvider.js";
+import AppContextProvider from "./components/AppContextProvider/AppContextProvider.js";
+import GameBoard from "./components/GameBoard/GameBoard.jsx";
 
 const App = () => {
-  return <AppContextProvider>Running...</AppContextProvider>;
+  return (
+    <AppContextProvider>
+      <GameBoard />
+    </AppContextProvider>
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById("root"));
