@@ -7,11 +7,13 @@ import "./styles.scss";
 
 import AppContextProvider from "./components/AppContextProvider/AppContextProvider.js";
 import GameBoard from "./components/GameBoard/GameBoard.jsx";
+import DifficultyModal from "./components/DifficultyModal/DifficultyModal.jsx";
 
 const App = () => {
   return (
     <AppContextProvider>
       <GameBoard />
+      <DifficultyModal />
     </AppContextProvider>
   );
 };
