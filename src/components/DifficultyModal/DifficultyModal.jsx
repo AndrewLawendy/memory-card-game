@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import { Button, Transition, Icon } from "semantic-ui-react";
+import React, { useState, useContext } from "react";
+import { Transition, Icon } from "semantic-ui-react";
 
 import styles from "./styles.scss";
 
+import { AppContext } from "../AppContext/AppContext.js";
+
 const DifficultyModal = () => {
-  const [visible, setVisible] = useState(false);
+  const {
+    isDifficultyModalOpen,
+    setDifficultyModalOpen,
+    setLevel,
+  } = useContext(AppContext);
   const [indicatorPosition, setIndicatorPosition] = useState(400);
 
   function updateIndicator({ offsetTop }) {
@@ -12,25 +18,47 @@ const DifficultyModal = () => {
   }
 
   return (
-    <>
-      <Button
-        circular
-        color="yellow"
-        icon="sliders horizontal"
-        title="Adjust Difficulty"
-        onClick={() => {
-          setVisible(true);
-        }}
-      />
-
-      <Transition visible={visible} animation="drop" duration={800}>
-        <div className={styles.modal}>
+    <Transition visible={isDifficultyModalOpen} animation="fade" duration={800}>
+      <div className={styles.modal}>
+        <Transition
+          visible={isDifficultyModalOpen}
+          animation="drop"
+          duration={800}
+          transitionOnMount="true"
+        >
           <div className={styles.modalBody}>
             <h4>Choose your difficulty level...</h4>
             <ul>
-              <li onMouseEnter={(e) => updateIndicator(e.target)}>Easy</li>
-              <li onMouseEnter={(e) => updateIndicator(e.target)}>Medium</li>
-              <li onMouseEnter={(e) => updateIndicator(e.target)}>Hard</li>
+              <li
+                onMouseEnter={(e) => updateIndicator(e.target)}
+                onClick={() => {
+                  setLevel("medium");
+                  setDifficultyModalOpen(false);
+                }}
+                role="presentation"
+              >
+                Easy
+              </li>
+              <li
+                onMouseEnter={(e) => updateIndicator(e.target)}
+                onClick={() => {
+                  setLevel("medium");
+                  setDifficultyModalOpen(false);
+                }}
+                role="presentation"
+              >
+                Medium
+              </li>
+              <li
+                onMouseEnter={(e) => updateIndicator(e.target)}
+                onClick={() => {
+                  setLevel("medium");
+                  setDifficultyModalOpen(false);
+                }}
+                role="presentation"
+              >
+                Hard
+              </li>
             </ul>
             <Icon
               style={{ top: indicatorPosition }}
@@ -38,9 +66,9 @@ const DifficultyModal = () => {
               name="hand point right outline"
             />
           </div>
-        </div>
-      </Transition>
-    </>
+        </Transition>
+      </div>
+    </Transition>
   );
 };
 

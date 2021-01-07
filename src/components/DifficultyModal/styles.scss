@@ -1,23 +1,23 @@
 @import "../../variables";
 
-.modal {
+.modal[class] {
   position: fixed;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.55);
 
   .modalBody {
-    position: absolute;
     width: 607px;
     height: 356px;
-    top: 260px;
-    left: 50%;
-    transform: translate3d(-50%, 0, 0);
     background-image: url("../../../assets/images/difficulty-select.png");
     padding: 108px 92px;
     overflow: hidden;
+    position: relative;
 
     h4 {
       color: #c0392b;
@@ -39,6 +39,7 @@
         &:hover {
           border-color: red;
           border-radius: 7px;
+          box-shadow: 2px 2px 3px 1px #000;
         }
       }
     }
