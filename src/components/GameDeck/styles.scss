@@ -6,12 +6,10 @@
   .deck {
     background-image: url("../../../assets/images/deck-bg.png");
     width: 70%;
-    height: 80%;
     display: grid;
     grid-template-columns: repeat(6, auto);
     grid-gap: 30px 12px;
     padding: 30px;
-    perspective: 1000px;
-    perspective-origin: top center;
+    margin: 30px 0;
   }
 }

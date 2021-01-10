@@ -1,8 +1,6 @@
 .card {
-  padding: 10px;
-  border-radius: 14px;
-  overflow: hidden;
   position: relative;
+  perspective: 1000px;
 
   .cardContent {
     height: 100%;
@@ -42,6 +40,8 @@
     height: 100%;
     transition: transform 0.3s;
     backface-visibility: hidden;
+    border-radius: 14px;
+    overflow: hidden;
 
     img {
       width: 100%;
