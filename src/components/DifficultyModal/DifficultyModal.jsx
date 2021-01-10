@@ -24,7 +24,7 @@ const DifficultyModal = () => {
           visible={isDifficultyModalOpen}
           animation="drop"
           duration={800}
-          transitionOnMount="true"
+          transitionOnMount={true}
         >
           <div className={styles.modalBody}>
             <h4>Choose your difficulty level...</h4>

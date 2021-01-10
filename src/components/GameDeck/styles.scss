@@ -11,5 +11,7 @@
     grid-template-columns: repeat(6, auto);
     grid-gap: 30px 12px;
     padding: 30px;
+    perspective: 1000px;
+    perspective-origin: top center;
   }
 }

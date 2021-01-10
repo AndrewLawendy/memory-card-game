@@ -1,10 +1,64 @@
 .card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
+  padding: 10px;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
 
-  img {
+  .cardContent {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 15px;
+    border: 6px solid #c0392b;
+    background-color: #ffeaa7;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    will-change: transform;
+    transition: transform 0.3s;
+
+    h4 {
+      text-align: center;
+    }
+
+    .cardImageContainer {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .cardBack {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    transition: transform 0.3s;
+    backface-visibility: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &.flipped {
+    .cardContent {
+      transform: rotateY(0);
+      transition: transform 0.5s;
+    }
+
+    .cardBack {
+      transform: rotateY(-180deg);
+      transition: transform 0.5s;
+    }
   }
 }
