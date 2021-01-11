@@ -1,21 +1,39 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Transition, Icon } from "semantic-ui-react";
 
 import styles from "./styles.scss";
 
 import { AppContext } from "../AppContext/AppContext.js";
+import { gameStates } from "../../../utils/constants.js";
 
 const DifficultyModal = () => {
   const {
     isDifficultyModalOpen,
     setDifficultyModalOpen,
     setLevelDetails,
+    setTransitionDetails,
   } = useContext(AppContext);
   const [indicatorPosition, setIndicatorPosition] = useState(400);
 
   function updateIndicator({ offsetTop }) {
     setIndicatorPosition(offsetTop + 11);
   }
+
+  function chooseLevel(level, uniqueCardsLimit) {
+    setLevelDetails({
+      level,
+      uniqueCardsLimit,
+    });
+    setDifficultyModalOpen(false);
+    setTransitionDetails({
+      isTransitionOpen: true,
+      nextState: gameStates.gameStarted,
+    });
+  }
+
+  useEffect(() => {
+    setDifficultyModalOpen(true);
+  }, []);
 
   return (
     <Transition visible={isDifficultyModalOpen} animation="fade" duration={800}>
@@ -32,11 +50,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  setLevelDetails({
-                    level: "Easy",
-                    uniqueCardsLimit: 3,
-                  });
-                  setDifficultyModalOpen(false);
+                  chooseLevel("Easy", 3);
                 }}
                 role="presentation"
               >
@@ -45,11 +59,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  setLevelDetails({
-                    level: "Medium",
-                    uniqueCardsLimit: 6,
-                  });
-                  setDifficultyModalOpen(false);
+                  chooseLevel("Medium", 6);
                 }}
                 role="presentation"
               >
@@ -58,11 +68,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  setLevelDetails({
-                    level: "Hard",
-                    uniqueCardsLimit: 9,
-                  });
-                  setDifficultyModalOpen(false);
+                  chooseLevel("Hard", 9);
                 }}
                 role="presentation"
               >
