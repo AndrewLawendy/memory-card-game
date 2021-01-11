@@ -9,7 +9,7 @@ const DifficultyModal = () => {
   const {
     isDifficultyModalOpen,
     setDifficultyModalOpen,
-    setLevel,
+    setLevelDetails,
   } = useContext(AppContext);
   const [indicatorPosition, setIndicatorPosition] = useState(400);
 
@@ -32,7 +32,10 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  setLevel("medium");
+                  setLevelDetails({
+                    level: "Easy",
+                    uniqueCardsLimit: 3,
+                  });
                   setDifficultyModalOpen(false);
                 }}
                 role="presentation"
@@ -42,7 +45,10 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  setLevel("medium");
+                  setLevelDetails({
+                    level: "Medium",
+                    uniqueCardsLimit: 6,
+                  });
                   setDifficultyModalOpen(false);
                 }}
                 role="presentation"
@@ -52,7 +58,10 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  setLevel("medium");
+                  setLevelDetails({
+                    level: "Hard",
+                    uniqueCardsLimit: 9,
+                  });
                   setDifficultyModalOpen(false);
                 }}
                 role="presentation"

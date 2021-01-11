@@ -16,7 +16,7 @@ const Card = ({ cardInfo: { imageSrc } }) => {
       role="presentation"
     >
       <div className={styles.cardContent}>
-        <h4>Witch</h4>
+        {/* <h4>Witch</h4> */}
 
         <div className={styles.cardImageContainer}>
           <img src={imageSrc} alt="unflipped card" />

@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { AppContext } from "../AppContext/AppContext.js";
 
 const AppContextProvider = ({ children }) => {
-  const [level, setLevel] = useState("");
+  const [levelDetails, setLevelDetails] = useState({});
   const [isDifficultyModalOpen, setDifficultyModalOpen] = useState(false);
 
   return (
     <AppContext.Provider
       value={{
-        level,
-        setLevel,
+        levelDetails,
+        setLevelDetails,
         isDifficultyModalOpen,
         setDifficultyModalOpen,
       }}
