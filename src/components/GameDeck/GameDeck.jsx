@@ -3,14 +3,14 @@ import React from "react";
 import styles from "./styles.scss";
 import Card from "../Card/Card.jsx";
 
-const GameDeck = () => {
-  const cards = [1, 2, 3, 4, 5, 6];
+import allCards from "../../../utils/allCards.js";
 
+const GameDeck = () => {
   return (
     <div className={styles.deckContainer}>
       <div className={styles.deck}>
-        {cards.map((card) => (
-          <Card key={card} />
+        {allCards.map((card, index) => (
+          <Card key={`${card.id}-${index}`} cardInfo={card} />
         ))}
       </div>
     </div>

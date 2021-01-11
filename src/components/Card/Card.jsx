@@ -2,10 +2,9 @@ import React, { useState } from "react";
 
 import styles from "./styles.scss";
 
-import cardBack from "../../../assets/images/cards/card-back.png";
-import img from "../../../assets/images/cards/1.png";
+import cardBack from "../../../assets/images/card-back.png";
 
-const Card = () => {
+const Card = ({ cardInfo: { imageSrc } }) => {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -20,7 +19,7 @@ const Card = () => {
         <h4>Witch</h4>
 
         <div className={styles.cardImageContainer}>
-          <img src={img} alt="unflipped card" />
+          <img src={imageSrc} alt="unflipped card" />
         </div>
       </div>
 
