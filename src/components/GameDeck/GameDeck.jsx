@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import styles from "./styles.scss";
 import Card from "../Card/Card.jsx";
@@ -19,10 +19,15 @@ function shuffle(arr) {
 const GameDeck = () => {
   const {
     levelDetails: { uniqueCardsLimit },
+    moveCounts,
+    setMoveCounts,
   } = useContext(AppContext);
+  const [pairedCards, setPairedCards] = useState([]);
 
-  const shuffledCards = shuffle(allCards).slice(0, uniqueCardsLimit);
-  const pairedCards = shuffle([...shuffledCards, ...shuffledCards]);
+  useEffect(() => {
+    const shuffledCards = shuffle(allCards).slice(0, uniqueCardsLimit);
+    setPairedCards(shuffle([...shuffledCards, ...shuffledCards]));
+  }, []);
 
   const flippedCards = [];
 
@@ -30,6 +35,7 @@ const GameDeck = () => {
     flippedCards.push({ cardId, setFlipped });
 
     if (flippedCards.length == 2) {
+      setMoveCounts(moveCounts + 1);
       const [firstCard, secondCard] = flippedCards;
       if (firstCard.cardId !== secondCard.cardId) {
         setTimeout(() => {

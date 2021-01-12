@@ -8,6 +8,7 @@ const AppContextProvider = ({ children }) => {
   const [isDifficultyModalOpen, setDifficultyModalOpen] = useState(false);
   const [transitionDetails, setTransitionDetails] = useState({});
   const [gameState, setGameState] = useState(gameStates.pickDifficulty);
+  const [moveCounts, setMoveCounts] = useState(0);
 
   return (
     <AppContext.Provider
@@ -20,6 +21,8 @@ const AppContextProvider = ({ children }) => {
         setTransitionDetails,
         gameState,
         setGameState,
+        moveCounts,
+        setMoveCounts,
       }}
     >
       {children}
