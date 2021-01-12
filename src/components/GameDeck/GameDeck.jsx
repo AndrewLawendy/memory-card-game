@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import styles from "./styles.scss";
-import Card from "../Card/Card.jsx";
-
-import { AppContext } from "../AppContext/AppContext.js";
 
 import allCards from "../../../utils/allCards.js";
+import { gameStates } from "../../../utils/constants";
+
+import { AppContext } from "../AppContext/AppContext.js";
+import Card from "../Card/Card.jsx";
 
 function shuffle(arr) {
   arr.forEach((_item, idx) => {
@@ -21,8 +22,10 @@ const GameDeck = () => {
     levelDetails: { uniqueCardsLimit },
     moveCounts,
     setMoveCounts,
+    setTransitionDetails,
   } = useContext(AppContext);
   const [pairedCards, setPairedCards] = useState([]);
+  const [paired, setPaired] = useState(1);
 
   useEffect(() => {
     const shuffledCards = shuffle(allCards).slice(0, uniqueCardsLimit);
@@ -42,6 +45,17 @@ const GameDeck = () => {
           firstCard.setFlipped(false);
           secondCard.setFlipped(false);
         }, 600);
+      } else {
+        setPaired((paired) => paired + 1);
+
+        if (paired === uniqueCardsLimit) {
+          setTimeout(() => {
+            setTransitionDetails({
+              isTransitionOpen: true,
+              nextState: gameStates.score,
+            });
+          }, 1500);
+        }
       }
 
       flippedCards.length = 0;

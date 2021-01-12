@@ -5,9 +5,8 @@ import { gameStates } from "../../../utils/constants.js";
 
 const GameTimer = () => {
   const [seconds, setSeconds] = useState(0);
+  const [timerInterval, setTimerInterval] = useState();
   const { gameState, setLastGameDuration } = useContext(AppContext);
-
-  let timerInterval;
 
   function tick() {
     setSeconds((seconds) => seconds + 1);
@@ -15,7 +14,7 @@ const GameTimer = () => {
 
   useEffect(() => {
     if (gameState === gameStates.gameStarted) {
-      timerInterval = setInterval(tick, 1000);
+      setTimerInterval(setInterval(tick, 1000));
     } else {
       clearInterval(timerInterval);
       setLastGameDuration(seconds);
