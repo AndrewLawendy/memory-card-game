@@ -6,13 +6,18 @@ import cardBack from "../../../assets/images/card-back.png";
 
 const Card = ({ cardInfo: { id, imageSrc }, evaluateCards }) => {
   const [flipped, setFlipped] = useState(false);
+  const [cardImageSrc, setCardImageSrc] = useState("");
 
   return (
     <div
       className={`${styles.card} ${flipped ? styles.flipped : ""}`}
       onClick={() => {
         if (!flipped) {
-          setFlipped(true);
+          if (!cardImageSrc) {
+            setCardImageSrc(imageSrc);
+          } else {
+            setFlipped(true);
+          }
           evaluateCards(id, setFlipped);
         }
       }}
@@ -22,7 +27,13 @@ const Card = ({ cardInfo: { id, imageSrc }, evaluateCards }) => {
         {/* <h4>Witch</h4> */}
 
         <div className={styles.cardImageContainer}>
-          <img src={imageSrc} alt="unflipped card" />
+          <img
+            src={cardImageSrc}
+            alt="Unflipped Card"
+            onLoad={() => {
+              setFlipped(true);
+            }}
+          />
         </div>
       </div>
 

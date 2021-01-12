@@ -7,7 +7,7 @@
     background-image: url("../../../assets/images/deck-bg.png");
     width: 70%;
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 230px;
     grid-gap: 30px 12px;
     padding: 30px;
