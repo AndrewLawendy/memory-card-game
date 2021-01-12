@@ -9,6 +9,7 @@ const AppContextProvider = ({ children }) => {
   const [transitionDetails, setTransitionDetails] = useState({});
   const [gameState, setGameState] = useState(gameStates.pickDifficulty);
   const [moveCounts, setMoveCounts] = useState(0);
+  const [lastGameDuration, setLastGameDuration] = useState(0);
 
   return (
     <AppContext.Provider
@@ -23,6 +24,8 @@ const AppContextProvider = ({ children }) => {
         setGameState,
         moveCounts,
         setMoveCounts,
+        lastGameDuration,
+        setLastGameDuration,
       }}
     >
       {children}
