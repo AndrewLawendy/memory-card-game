@@ -21,11 +21,7 @@ const GameTimer = () => {
     }
   }, [gameState]);
 
-  return (
-    <h2 className="title">
-      {new Date(seconds * 1000).toISOString().substr(14, 5)}
-    </h2>
-  );
+  return <h2>{new Date(seconds * 1000).toISOString().substr(14, 5)}</h2>;
 };
 
 export default GameTimer;

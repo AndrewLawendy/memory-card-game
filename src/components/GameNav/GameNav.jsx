@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Transition } from "semantic-ui-react";
+import { Transition, Grid } from "semantic-ui-react";
 
 import styles from "./styles.scss";
 
@@ -15,12 +15,22 @@ const GameNav = () => {
   }, [gameState]);
 
   return (
-    <div className={styles.nav}>
-      <h2 className="title">Moves {moveCounts}</h2>
-      <Transition animation="jiggle" duration={1500} visible={animate}>
-        <h1 className="title">Memory Card</h1>
-      </Transition>
-      <GameTimer />
+    <div className={`${styles.nav} title`}>
+      <Grid columns="equal" verticalAlign="middle">
+        <Grid.Column>
+          <h2>Moves {moveCounts}</h2>
+        </Grid.Column>
+
+        <Grid.Column textAlign="center">
+          <Transition animation="jiggle" duration={1500} visible={animate}>
+            <h1>Memory Card</h1>
+          </Transition>
+        </Grid.Column>
+
+        <Grid.Column textAlign="right">
+          <GameTimer />
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };
