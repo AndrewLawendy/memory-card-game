@@ -8,24 +8,24 @@ const Card = ({ cardInfo: { id, imageSrc }, evaluateCards }) => {
   const [flipped, setFlipped] = useState(false);
   const [cardImageSrc, setCardImageSrc] = useState("");
 
+  function handleCardFlip() {
+    if (!flipped) {
+      if (!cardImageSrc) {
+        setCardImageSrc(imageSrc);
+      } else {
+        setFlipped(true);
+      }
+      evaluateCards(id, setFlipped);
+    }
+  }
+
   return (
     <div
       className={`${styles.card} ${flipped ? styles.flipped : ""}`}
-      onClick={() => {
-        if (!flipped) {
-          if (!cardImageSrc) {
-            setCardImageSrc(imageSrc);
-          } else {
-            setFlipped(true);
-          }
-          evaluateCards(id, setFlipped);
-        }
-      }}
+      onClick={handleCardFlip}
       role="presentation"
     >
       <div className={styles.cardContent}>
-        {/* <h4>Witch</h4> */}
-
         <div className={styles.cardImageContainer}>
           <img
             src={cardImageSrc}

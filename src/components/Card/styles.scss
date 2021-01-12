@@ -1,6 +1,7 @@
 .card {
   position: relative;
   perspective: 1000px;
+  cursor: pointer;
 
   .cardContent {
     height: 100%;
@@ -16,10 +17,6 @@
     will-change: transform, box-shadow;
     transition: transform 0.3s, box-shadow 0.3s;
 
-    // h4 {
-    //   text-align: center;
-    // }
-
     .cardImageContainer {
       height: 100%;
       flex: 1;
@@ -28,7 +25,8 @@
       align-items: center;
 
       img {
-        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
       }
     }
   }
