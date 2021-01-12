@@ -4,14 +4,17 @@ import styles from "./styles.scss";
 
 import cardBack from "../../../assets/images/card-back.png";
 
-const Card = ({ cardInfo: { imageSrc } }) => {
+const Card = ({ cardInfo: { id, imageSrc }, evaluateCards }) => {
   const [flipped, setFlipped] = useState(false);
 
   return (
     <div
       className={`${styles.card} ${flipped ? styles.flipped : ""}`}
       onClick={() => {
-        setFlipped(!flipped);
+        if (!flipped) {
+          setFlipped(true);
+          evaluateCards(id, setFlipped);
+        }
       }}
       role="presentation"
     >

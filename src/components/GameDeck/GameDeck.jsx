@@ -24,11 +24,33 @@ const GameDeck = () => {
   const shuffledCards = shuffle(allCards).slice(0, uniqueCardsLimit);
   const pairedCards = shuffle([...shuffledCards, ...shuffledCards]);
 
+  const flippedCards = [];
+
+  function evaluateCards(cardId, setFlipped) {
+    flippedCards.push({ cardId, setFlipped });
+
+    if (flippedCards.length == 2) {
+      const [firstCard, secondCard] = flippedCards;
+      if (firstCard.cardId !== secondCard.cardId) {
+        setTimeout(() => {
+          firstCard.setFlipped(false);
+          secondCard.setFlipped(false);
+        }, 600);
+      }
+
+      flippedCards.length = 0;
+    }
+  }
+
   return (
     <div className={styles.deckContainer}>
       <div className={styles.deck}>
         {pairedCards.map((card, index) => (
-          <Card key={`${card.id}-${index}`} cardInfo={card} />
+          <Card
+            key={`${card.id}-${index}`}
+            cardInfo={card}
+            evaluateCards={evaluateCards}
+          />
         ))}
       </div>
     </div>
