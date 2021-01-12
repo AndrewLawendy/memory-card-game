@@ -8,7 +8,7 @@
     width: 70%;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 230px;
+    grid-auto-rows: 250px;
     grid-gap: 30px 12px;
     padding: 30px;
     margin: 80px 0;
