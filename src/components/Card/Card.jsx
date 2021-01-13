@@ -14,8 +14,8 @@ const Card = ({ cardInfo: { id, imageSrc }, evaluateCards }) => {
         setCardImageSrc(imageSrc);
       } else {
         setFlipped(true);
+        evaluateCards(id, setFlipped);
       }
-      evaluateCards(id, setFlipped);
     }
   }
 
@@ -30,9 +30,7 @@ const Card = ({ cardInfo: { id, imageSrc }, evaluateCards }) => {
           <img
             src={cardImageSrc}
             alt="Unflipped Card"
-            onLoad={() => {
-              setFlipped(true);
-            }}
+            onLoad={handleCardFlip}
           />
         </div>
       </div>
