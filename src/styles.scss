@@ -9,11 +9,53 @@
   font-family: "Press Start", Courier, monospace !important;
 }
 
+h1 {
+  font-size: 3.2rem;
+}
+
 :global .title {
   color: $yellow;
   text-shadow: 4px 4px #000;
 }
 
-h1 {
-  font-size: 3.2rem;
+:global .dialog-border {
+  $border-height: 5px;
+  $before-width: 60;
+  $after-width: 15;
+  $border-radius: 7px;
+
+  position: absolute;
+  top: -$border-height;
+  left: 0;
+  width: 100%;
+  height: $border-height;
+  background-color: $yellow;
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: inherit;
+    height: 100%;
+  }
+
+  &::before {
+    top: -$border-height;
+    left: ((100 - $before-width) / 2) * 1%;
+    width: $before-width * 1%;
+  }
+
+  &::after {
+    top: -2 * $border-height;
+    left: ((100 - $after-width) / 2) * 1%;
+    width: $after-width * 1%;
+  }
+
+  &.invert {
+    top: initial;
+    bottom: -$border-height;
+    transform: scaleY(-1);
+  }
 }

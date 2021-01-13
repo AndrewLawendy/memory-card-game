@@ -71,6 +71,7 @@ const GameDeck = () => {
   return (
     <div className={styles.deckContainer}>
       <div className={styles.deck}>
+        <div className="dialog-border" />
         {pairedCards.map((card, index) => (
           <Card
             key={`${card.id}-${index}`}
@@ -78,6 +79,7 @@ const GameDeck = () => {
             evaluateCards={evaluateCards}
           />
         ))}
+        <div className="dialog-border invert" />
       </div>
     </div>
   );

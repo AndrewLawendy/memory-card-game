@@ -53,6 +53,7 @@ const ScorePanel = () => {
           transitionOnMount={true}
         >
           <div className={styles.modalBody}>
+            <div className="dialog-border" />
             <Grid columns="equal" verticalAlign="middle">
               <Grid.Column textAlign="center">
                 <div>
@@ -73,7 +74,7 @@ const ScorePanel = () => {
               <Grid.Row>
                 <Grid.Column textAlign="center">
                   <h2 className="title">Your Score</h2>
-                  <span className={styles.result}>{score}</span>
+                  <span className={styles.score}>{score}</span>
                 </Grid.Column>
               </Grid.Row>
               <Grid.Row>
@@ -90,6 +91,7 @@ const ScorePanel = () => {
                 </Grid.Column>
               </Grid.Row>
             </Grid>
+            <div className="dialog-border invert" />
           </div>
         </Transition>
       </div>

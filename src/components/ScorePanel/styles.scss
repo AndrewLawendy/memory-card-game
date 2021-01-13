@@ -8,6 +8,7 @@
     padding: 45px 0;
     background-image: url("../../../assets/images/score-bg.jpg");
     background-size: cover;
+    position: relative;
 
     :global .column {
       div {
@@ -18,9 +19,16 @@
         box-shadow: -4px -5px 0px 2px #645c42;
       }
     }
+
     .result {
       color: #fff;
       text-shadow: 2px 2px #000;
+      font-size: 1.3rem;
+    }
+
+    .score {
+      @extend .result;
+      font-size: 2rem;
     }
 
     .replayBtn {
