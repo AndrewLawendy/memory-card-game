@@ -1,0 +1,18 @@
+@import "../../placeholders";
+
+.modal[class] {
+  @extend %modal-overlay;
+
+  .modalBody {
+    .result {
+      color: #fff;
+    }
+
+    .replayBtn {
+      i {
+        opacity: 1;
+        margin-left: 0.7rem !important;
+      }
+    }
+  }
+}

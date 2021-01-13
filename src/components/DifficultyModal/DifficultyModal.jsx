@@ -19,10 +19,11 @@ const DifficultyModal = () => {
     setIndicatorPosition(offsetTop + 11);
   }
 
-  function chooseLevel(level, uniqueCardsLimit) {
+  function chooseLevel(level, uniqueCardsLimit, idealDuration) {
     setLevelDetails({
       level,
       uniqueCardsLimit,
+      idealDuration,
     });
     setDifficultyModalOpen(false);
     setTransitionDetails({
@@ -50,7 +51,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  chooseLevel("Easy", 3);
+                  chooseLevel("Easy", 3, 10);
                 }}
                 role="presentation"
               >
@@ -59,7 +60,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  chooseLevel("Medium", 6);
+                  chooseLevel("Medium", 6, 20);
                 }}
                 role="presentation"
               >
@@ -68,7 +69,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  chooseLevel("Hard", 9);
+                  chooseLevel("Hard", 9, 30);
                 }}
                 role="presentation"
               >
