@@ -32,35 +32,41 @@ const GameDeck = () => {
     setPairedCards(shuffle([...shuffledCards, ...shuffledCards]));
   }, []);
 
-  const flippedCards = [];
+  function trackPaired() {
+    const flippedCards = [];
 
-  function evaluateCards(cardId, setFlipped) {
-    flippedCards.push({ cardId, setFlipped });
+    function evaluateCards(cardId, setFlipped) {
+      flippedCards.push({ cardId, setFlipped });
 
-    if (flippedCards.length == 2) {
-      setMoveCounts(moveCounts + 1);
-      const [firstCard, secondCard] = flippedCards;
-      if (firstCard.cardId !== secondCard.cardId) {
-        setTimeout(() => {
-          firstCard.setFlipped(false);
-          secondCard.setFlipped(false);
-        }, 600);
-      } else {
-        setPaired((paired) => paired + 1);
-
-        if (paired === uniqueCardsLimit) {
+      if (flippedCards.length == 2) {
+        setMoveCounts(moveCounts + 1);
+        const [firstCard, secondCard] = flippedCards;
+        if (firstCard.cardId !== secondCard.cardId) {
           setTimeout(() => {
-            setTransitionDetails({
-              isTransitionOpen: true,
-              nextState: gameStates.score,
-            });
-          }, 1500);
-        }
-      }
+            firstCard.setFlipped(false);
+            secondCard.setFlipped(false);
+          }, 600);
+        } else {
+          setPaired((paired) => paired + 1);
 
-      flippedCards.length = 0;
+          if (paired === uniqueCardsLimit) {
+            setTimeout(() => {
+              setTransitionDetails({
+                isTransitionOpen: true,
+                nextState: gameStates.score,
+              });
+            }, 1500);
+          }
+        }
+
+        flippedCards.length = 0;
+      }
     }
+
+    return evaluateCards;
   }
+
+  const evaluateCards = trackPaired();
 
   return (
     <div className={styles.deckContainer}>
