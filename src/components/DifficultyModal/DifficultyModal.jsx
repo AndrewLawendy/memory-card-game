@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { Transition, Icon } from "semantic-ui-react";
 
 import styles from "./styles.scss";
@@ -7,12 +7,9 @@ import { AppContext } from "../AppContext/AppContext.js";
 import { gameStates } from "../../../utils/constants.js";
 
 const DifficultyModal = () => {
-  const {
-    isDifficultyModalOpen,
-    setDifficultyModalOpen,
-    setLevelDetails,
-    setTransitionDetails,
-  } = useContext(AppContext);
+  const { gameState, setLevelDetails, setTransitionDetails } = useContext(
+    AppContext
+  );
   const [indicatorPosition, setIndicatorPosition] = useState(400);
 
   function updateIndicator({ offsetTop }) {
@@ -25,22 +22,21 @@ const DifficultyModal = () => {
       uniqueCardsLimit,
       idealDuration,
     });
-    setDifficultyModalOpen(false);
     setTransitionDetails({
       isTransitionOpen: true,
       nextState: gameStates.gameStarted,
     });
   }
 
-  useEffect(() => {
-    setDifficultyModalOpen(true);
-  }, []);
-
   return (
-    <Transition visible={isDifficultyModalOpen} animation="fade" duration={800}>
+    <Transition
+      visible={gameState === gameStates.pickDifficulty}
+      animation="fade"
+      duration={800}
+    >
       <div className={styles.modal}>
         <Transition
-          visible={isDifficultyModalOpen}
+          visible={gameState === gameStates.pickDifficulty}
           animation="drop"
           duration={800}
           transitionOnMount={true}

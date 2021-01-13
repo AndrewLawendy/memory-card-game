@@ -4,8 +4,23 @@
   @extend %modal-overlay;
 
   .modalBody {
+    width: 600px;
+    padding: 45px 0;
+    background-image: url("../../../assets/images/score-bg.jpg");
+    background-size: cover;
+
+    :global .column {
+      div {
+        display: inline-block;
+        width: 222px;
+        background: rgba(238, 229, 199, 0.7);
+        padding: 15px;
+        box-shadow: -4px -5px 0px 2px #645c42;
+      }
+    }
     .result {
       color: #fff;
+      text-shadow: 2px 2px #000;
     }
 
     .replayBtn {

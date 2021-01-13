@@ -9,6 +9,7 @@ import { gameStates } from "../../../utils/constants.js";
 const ScorePanel = () => {
   const {
     levelDetails: { uniqueCardsLimit, idealDuration },
+    gameState,
     moveCounts,
     setMoveCounts,
     lastGameDuration,
@@ -39,10 +40,14 @@ const ScorePanel = () => {
   }
 
   return (
-    <Transition visible={true} animation="fade" duration={800}>
+    <Transition
+      visible={gameState === gameStates.score}
+      animation="fade"
+      duration={800}
+    >
       <div className={styles.modal}>
         <Transition
-          visible={true}
+          visible={gameState === gameStates.score}
           animation="drop"
           duration={800}
           transitionOnMount={true}
@@ -50,16 +55,20 @@ const ScorePanel = () => {
           <div className={styles.modalBody}>
             <Grid columns="equal" verticalAlign="middle">
               <Grid.Column textAlign="center">
-                <h2 className="title">Moves</h2>
-                <span className={styles.result}>{moveCounts}</span>
+                <div>
+                  <h2 className="title">Moves</h2>
+                  <span className={styles.result}>{moveCounts}</span>
+                </div>
               </Grid.Column>
               <Grid.Column textAlign="center">
-                <h2 className="title">Duration</h2>
-                <span className={styles.result}>
-                  {new Date(lastGameDuration * 1000)
-                    .toISOString()
-                    .substr(14, 5)}
-                </span>
+                <div>
+                  <h2 className="title">Duration</h2>
+                  <span className={styles.result}>
+                    {new Date(lastGameDuration * 1000)
+                      .toISOString()
+                      .substr(14, 5)}
+                  </span>
+                </div>
               </Grid.Column>
               <Grid.Row>
                 <Grid.Column textAlign="center">
