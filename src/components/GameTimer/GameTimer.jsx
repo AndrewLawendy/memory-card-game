@@ -13,11 +13,19 @@ const GameTimer = () => {
   }
 
   useEffect(() => {
-    if (gameState === gameStates.gameStarted) {
-      setTimerInterval(setInterval(tick, 1000));
-    } else {
-      clearInterval(timerInterval);
-      setLastGameDuration(seconds);
+    switch (gameState) {
+      case gameStates.gameStarted:
+        setTimerInterval(setInterval(tick, 1000));
+        break;
+
+      case gameStates.pickDifficulty:
+      default:
+        setSeconds(0);
+        break;
+
+      case gameStates.score:
+        clearInterval(timerInterval);
+        setLastGameDuration(seconds);
     }
   }, [gameState]);
 
