@@ -87,13 +87,14 @@ const GameDeck = () => {
         idx
       ];
       const { offsetTop, offsetLeft } = el;
-      el.style.cssText = `top: 0px; left: 0px`;
+
+      el.style.cssText = `transition: .5s; top: ${
+        destinationOffsetTop - offsetTop
+      }px; left: ${destinationOffsetLeft - offsetLeft}px`;
 
       setTimeout(() => {
-        el.style.cssText = `transition: .5s; top: ${
-          destinationOffsetTop - offsetTop
-        }px; left: ${destinationOffsetLeft - offsetLeft}px`;
-      }, 100);
+        el.removeAttribute("style");
+      }, 500);
     });
   }
 
