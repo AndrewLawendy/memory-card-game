@@ -17,14 +17,16 @@ const ScorePanel = () => {
     setTransitionDetails,
   } = useContext(AppContext);
 
-  const perfectScore = 500;
+  const winningScore = 250;
+  const perfectTimingMoves = 250;
   let movesDiff = moveCounts - uniqueCardsLimit * 2;
   let durationDiff = lastGameDuration - idealDuration;
 
   if (movesDiff < 0) movesDiff = 0;
   if (durationDiff < 0) durationDiff = 0;
 
-  let score = perfectScore - movesDiff * 10 - durationDiff * 20;
+  let score =
+    winningScore + perfectTimingMoves - movesDiff * 10 - durationDiff * 20;
   if (score < 0) score = 0;
 
   function replay() {
