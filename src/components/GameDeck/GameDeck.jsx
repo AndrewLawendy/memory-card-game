@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 
 import styles from "./styles.scss";
 
@@ -26,10 +26,12 @@ const GameDeck = () => {
   } = useContext(AppContext);
   const [pairedCards, setPairedCards] = useState([]);
   const [paired, setPaired] = useState(1);
+  const cardsElements = useRef([]);
 
   useEffect(() => {
     const shuffledCards = shuffle(allCards).slice(0, uniqueCardsLimit);
     setPairedCards(shuffle([...shuffledCards, ...shuffledCards]));
+    setTimeout(animateShuffle, 100);
   }, []);
 
   function trackPaired() {
@@ -68,12 +70,44 @@ const GameDeck = () => {
 
   const evaluateCards = trackPaired();
 
+  function animateShuffle() {
+    const allCardsLength = uniqueCardsLimit * 2;
+    const newDestinations = shuffle(
+      Array.from({ length: allCardsLength }, (_, idx) => idx)
+    ).map((order) => {
+      const { offsetTop, offsetLeft } = cardsElements.current[order];
+      return {
+        destinationOffsetTop: offsetTop,
+        destinationOffsetLeft: offsetLeft,
+      };
+    });
+
+    cardsElements.current.forEach((el, idx) => {
+      const { destinationOffsetTop, destinationOffsetLeft } = newDestinations[
+        idx
+      ];
+      const { offsetTop, offsetLeft } = el;
+      el.style.cssText = `top: 0px; left: 0px`;
+
+      setTimeout(() => {
+        el.style.cssText = `transition: .5s; top: ${
+          destinationOffsetTop - offsetTop
+        }px; left: ${destinationOffsetLeft - offsetLeft}px`;
+      }, 100);
+    });
+  }
+
+  function appendRef(el) {
+    cardsElements.current.push(el);
+  }
+
   return (
     <div className={styles.deckContainer}>
       <div className={styles.deck}>
         <div className="dialog-border" />
         {pairedCards.map((card, index) => (
           <Card
+            ref={appendRef}
             key={`${card.id}-${index}`}
             cardInfo={card}
             evaluateCards={evaluateCards}
