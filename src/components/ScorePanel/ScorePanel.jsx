@@ -19,6 +19,7 @@ const ScorePanel = () => {
 
   const winningScore = 250;
   const perfectTimingMoves = 250;
+  const minimumScore = 150;
   let movesDiff = moveCounts - uniqueCardsLimit * 2;
   let durationDiff = lastGameDuration - idealDuration;
 
@@ -26,8 +27,8 @@ const ScorePanel = () => {
   if (durationDiff < 0) durationDiff = 0;
 
   let score =
-    winningScore + perfectTimingMoves - movesDiff * 10 - durationDiff * 20;
-  if (score < 0) score = 0;
+    winningScore + perfectTimingMoves - movesDiff * 5 - durationDiff * 10;
+  if (score < 0) score = minimumScore;
 
   function replay() {
     setTransitionDetails({
