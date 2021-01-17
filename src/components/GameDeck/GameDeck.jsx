@@ -26,6 +26,7 @@ const GameDeck = () => {
   } = useContext(AppContext);
   const [pairedCards, setPairedCards] = useState([]);
   const [paired, setPaired] = useState(1);
+  const [flippedCards, setFlippedCards] = useState([]);
   const cardsElements = useRef([]);
 
   useEffect(() => {
@@ -34,41 +35,34 @@ const GameDeck = () => {
     setTimeout(animateShuffle, 100);
   }, []);
 
-  function trackPaired() {
-    const flippedCards = [];
+  function evaluateCards(cardId, setFlipped) {
+    const cardsToEvaluate = [...flippedCards, { cardId, setFlipped }];
+    setFlippedCards(cardsToEvaluate);
 
-    function evaluateCards(cardId, setFlipped) {
-      flippedCards.push({ cardId, setFlipped });
+    if (cardsToEvaluate.length == 2) {
+      setMoveCounts(moveCounts + 1);
+      const [firstCard, secondCard] = cardsToEvaluate;
+      if (firstCard.cardId !== secondCard.cardId) {
+        setTimeout(() => {
+          firstCard.setFlipped(false);
+          secondCard.setFlipped(false);
+        }, 600);
+      } else {
+        setPaired((paired) => paired + 1);
 
-      if (flippedCards.length == 2) {
-        setMoveCounts(moveCounts + 1);
-        const [firstCard, secondCard] = flippedCards;
-        if (firstCard.cardId !== secondCard.cardId) {
+        if (paired === uniqueCardsLimit) {
           setTimeout(() => {
-            firstCard.setFlipped(false);
-            secondCard.setFlipped(false);
-          }, 600);
-        } else {
-          setPaired((paired) => paired + 1);
-
-          if (paired === uniqueCardsLimit) {
-            setTimeout(() => {
-              setTransitionDetails({
-                isTransitionOpen: true,
-                nextState: gameStates.score,
-              });
-            }, 1500);
-          }
+            setTransitionDetails({
+              isTransitionOpen: true,
+              nextState: gameStates.score,
+            });
+          }, 1500);
         }
-
-        flippedCards.length = 0;
       }
+
+      setFlippedCards([]);
     }
-
-    return evaluateCards;
   }
-
-  const evaluateCards = trackPaired();
 
   function animateShuffle() {
     const allCardsLength = uniqueCardsLimit * 2;
