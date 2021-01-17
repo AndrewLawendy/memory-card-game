@@ -24,14 +24,14 @@ const GameDeck = () => {
     setMoveCounts,
     setTransitionDetails,
   } = useContext(AppContext);
-  const [pairedCards, setPairedCards] = useState([]);
-  const [paired, setPaired] = useState(1);
+  const [gameCards, setGameCards] = useState([]);
+  const [pairedCards, setPairedCards] = useState(1);
   const [flippedCards, setFlippedCards] = useState([]);
   const cardsElements = useRef([]);
 
   useEffect(() => {
     const shuffledCards = shuffle(allCards).slice(0, uniqueCardsLimit);
-    setPairedCards(shuffle([...shuffledCards, ...shuffledCards]));
+    setGameCards(shuffle([...shuffledCards, ...shuffledCards]));
     setTimeout(animateShuffle, 100);
   }, []);
 
@@ -48,9 +48,9 @@ const GameDeck = () => {
           secondCard.setFlipped(false);
         }, 600);
       } else {
-        setPaired((paired) => paired + 1);
+        setPairedCards((paired) => paired + 1);
 
-        if (paired === uniqueCardsLimit) {
+        if (pairedCards === uniqueCardsLimit) {
           setTimeout(() => {
             setTransitionDetails({
               isTransitionOpen: true,
@@ -100,7 +100,7 @@ const GameDeck = () => {
     <div className={styles.deckContainer}>
       <div className={styles.deck}>
         <div className="dialog-border" />
-        {pairedCards.map((card, index) => (
+        {gameCards.map((card, index) => (
           <Card
             ref={appendRef}
             key={`${card.id}-${index}`}
