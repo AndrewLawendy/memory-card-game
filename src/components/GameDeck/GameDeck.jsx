@@ -25,7 +25,7 @@ const GameDeck = () => {
     setTransitionDetails,
   } = useContext(AppContext);
   const [gameCards, setGameCards] = useState([]);
-  const [pairedCards, setPairedCards] = useState(1);
+  const [pairedCardsCount, setPairedCardsCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState([]);
   const cardsElements = useRef([]);
 
@@ -48,9 +48,10 @@ const GameDeck = () => {
           secondCard.setFlipped(false);
         }, 600);
       } else {
-        setPairedCards((paired) => paired + 1);
+        const newPairedCardsCount = pairedCardsCount + 1;
+        setPairedCardsCount(newPairedCardsCount);
 
-        if (pairedCards === uniqueCardsLimit) {
+        if (newPairedCardsCount === uniqueCardsLimit) {
           setTimeout(() => {
             setTransitionDetails({
               isTransitionOpen: true,
