@@ -7,6 +7,7 @@ import { gameStates } from "../../../utils/constants";
 
 import { AppContext } from "../AppContext/AppContext.js";
 import Card from "../Card/Card.jsx";
+import PauseControls from "../PauseControls/PauseControls.jsx";
 
 function shuffle(arr) {
   arr.forEach((_item, idx) => {
@@ -98,20 +99,23 @@ const GameDeck = () => {
   }
 
   return (
-    <div className={styles.deckContainer}>
-      <div className={styles.deck}>
-        <div className="dialog-border" />
-        {gameCards.map((card, index) => (
-          <Card
-            ref={appendRef}
-            key={`${card.id}-${index}`}
-            cardInfo={card}
-            evaluateCards={evaluateCards}
-          />
-        ))}
-        <div className="dialog-border invert" />
+    <>
+      <div className={styles.deckContainer}>
+        <div className={styles.deck}>
+          <div className="dialog-border" />
+          {gameCards.map((card, index) => (
+            <Card
+              ref={appendRef}
+              key={`${card.id}-${index}`}
+              cardInfo={card}
+              evaluateCards={evaluateCards}
+            />
+          ))}
+          <div className="dialog-border invert" />
+        </div>
       </div>
-    </div>
+      <PauseControls />
+    </>
   );
 };
 

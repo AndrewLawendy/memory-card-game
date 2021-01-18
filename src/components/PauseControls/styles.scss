@@ -1,0 +1,11 @@
+@import "../../variables", "../../placeholders";
+
+.modal[class] {
+  @extend %modal-overlay;
+
+  h1 {
+    text-align: center;
+    font-size: 5rem;
+    margin-bottom: 3rem;
+  }
+}
