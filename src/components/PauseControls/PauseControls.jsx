@@ -7,23 +7,35 @@ import { gameStates } from "../../../utils/constants.js";
 import styles from "./styles.scss";
 
 const PauseControls = () => {
-  const { paused, setPaused, setTransitionDetails, setGameState } = useContext(
-    AppContext
-  );
+  const {
+    paused,
+    setPaused,
+    setTransitionDetails,
+    setGameState,
+    setMoveCounts,
+  } = useContext(AppContext);
 
-  function handleSpaceBarPress({ code }) {
-    if (code === "Space") {
-      setPaused(!paused);
+  function handleSpaceBarPress(event) {
+    if (event.code === "Space") {
+      event.preventDefault();
+      setPaused((paused) => !paused);
     }
   }
 
   useEffect(() => {
     window.addEventListener("keydown", handleSpaceBarPress);
 
-    return () => window.removeEventListener("keydown", handleSpaceBarPress);
-  });
+    return () => {
+      window.removeEventListener("keydown", handleSpaceBarPress);
+      setPaused(false);
+    };
+  }, []);
 
   function goToMainMenu() {
+    setTimeout(() => {
+      setMoveCounts(0);
+    }, 350);
+
     setTransitionDetails({
       isTransitionOpen: true,
       nextState: gameStates.pickDifficulty,
@@ -35,6 +47,7 @@ const PauseControls = () => {
   function resetGame() {
     setTimeout(() => {
       setGameState(gameStates.pickDifficulty);
+      setMoveCounts(0);
     }, 350);
 
     setTransitionDetails({
