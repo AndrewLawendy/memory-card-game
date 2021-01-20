@@ -31,7 +31,7 @@ const Card = forwardRef(
           <div className={styles.cardImageContainer}>
             <img
               src={cardImageSrc}
-              alt="Unflipped Card"
+              alt="Card Character"
               onLoad={handleCardFlip}
             />
           </div>

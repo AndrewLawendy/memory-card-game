@@ -28,7 +28,7 @@ const ScorePanel = () => {
 
   let score =
     winningScore + perfectTimingMovesScore - movesDiff * 5 - durationDiff * 10;
-  if (score < 0) score = minimumScore;
+  if (score < minimumScore) score = minimumScore;
 
   function replay() {
     setTransitionDetails({
