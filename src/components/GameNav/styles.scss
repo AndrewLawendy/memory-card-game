@@ -3,7 +3,7 @@
   background-image: url("../../../assets/images/wood-log.png");
   background-position: 0 -50px;
 
-  :global .title {
-    margin-top: 0;
+  h1 {
+    white-space: nowrap;
   }
 }
