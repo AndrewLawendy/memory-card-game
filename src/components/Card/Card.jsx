@@ -7,7 +7,7 @@ import cardBack from "../../../assets/images/card-back.png";
 const Card = forwardRef(
   ({ cardInfo: { id, imageSrc }, evaluateCards }, ref) => {
     const [flipped, setFlipped] = useState(false);
-    const [cardImageSrc, setCardImageSrc] = useState("");
+    const [cardImageSrc, setCardImageSrc] = useState(imageSrc);
 
     function handleCardFlip() {
       if (!flipped) {
@@ -32,7 +32,7 @@ const Card = forwardRef(
             <img
               src={cardImageSrc}
               alt="Card Character"
-              onLoad={handleCardFlip}
+              // onLoad={handleCardFlip}
             />
           </div>
         </div>

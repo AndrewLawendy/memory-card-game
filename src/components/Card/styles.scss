@@ -72,4 +72,32 @@
       box-shadow: 0 0 20px 10px #eccc68;
     }
   }
+
+  &.dazzling {
+    .cardContent {
+      animation: dazzle-flip-content 2s ease-in-out;
+    }
+
+    .cardBack {
+      animation: dazzle-flip-back 2s ease-in-out;
+    }
+  }
+}
+
+@keyframes dazzle-flip-content {
+  from {
+    transform: rotateY(180deg);
+  }
+  to {
+    transform: rotateY(-1260deg);
+  }
+}
+
+@keyframes dazzle-flip-back {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(-1080deg);
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 
 import styles from "./styles.scss";
+import cardStyles from "../Card/styles.scss";
 
 import allCards from "../../../utils/allCards.js";
 import { gameStates } from "../../../utils/constants";
@@ -83,14 +84,18 @@ const GameDeck = () => {
         idx
       ];
       const { offsetTop, offsetLeft } = el;
+      const transitionDelay = Math.random() * (2.5 * 1) - 1;
 
-      el.style.cssText = `transition: .5s; top: ${
+      el.style.cssText = `transition: 2s ${transitionDelay}s; top: ${
         destinationOffsetTop - offsetTop
-      }px; left: ${destinationOffsetLeft - offsetLeft}px`;
+      }px; left: ${destinationOffsetLeft - offsetLeft}px;`;
+      setTimeout(() => {
+        el.classList.add(cardStyles.dazzling);
+      }, transitionDelay * 1000);
 
       setTimeout(() => {
         el.removeAttribute("style");
-      }, 500);
+      }, 3200);
     });
   }
 
