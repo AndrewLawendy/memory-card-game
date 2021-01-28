@@ -47,7 +47,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  chooseLevel("Easy", 3, 16);
+                  chooseLevel("Easy", 3, 19);
                 }}
                 role="presentation"
               >
@@ -56,7 +56,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  chooseLevel("Medium", 6, 26);
+                  chooseLevel("Medium", 6, 29);
                 }}
                 role="presentation"
               >
@@ -65,7 +65,7 @@ const DifficultyModal = () => {
               <li
                 onMouseEnter={(e) => updateIndicator(e.target)}
                 onClick={() => {
-                  chooseLevel("Hard", 9, 36);
+                  chooseLevel("Hard", 9, 39);
                 }}
                 role="presentation"
               >

@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 
 import styles from "./styles.scss";
 
@@ -13,12 +13,17 @@ const Card = forwardRef(
       if (!flipped) {
         if (!cardImageSrc) {
           setCardImageSrc(imageSrc);
-        } else {
-          setFlipped(true);
-          evaluateCards(id, setFlipped);
         }
+        setFlipped(true);
+        evaluateCards(id, setFlipped);
       }
     }
+
+    useEffect(() => {
+      setTimeout(() => {
+        setCardImageSrc("");
+      }, 3500);
+    }, []);
 
     return (
       <div
@@ -29,11 +34,7 @@ const Card = forwardRef(
       >
         <div className={styles.cardContent}>
           <div className={styles.cardImageContainer}>
-            <img
-              src={cardImageSrc}
-              alt="Card Character"
-              // onLoad={handleCardFlip}
-            />
+            <img src={cardImageSrc} alt="Card Character" />
           </div>
         </div>
 
