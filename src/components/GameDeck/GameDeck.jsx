@@ -92,10 +92,6 @@ const GameDeck = () => {
       setTimeout(() => {
         el.classList.add(cardStyles.dazzling);
       }, transitionDelay * 1000);
-
-      setTimeout(() => {
-        el.removeAttribute("style");
-      }, 3200);
     });
   }
 
