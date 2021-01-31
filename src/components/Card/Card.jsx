@@ -21,7 +21,7 @@ const Card = forwardRef(
 
     useEffect(() => {
       setTimeout(() => {
-        setCardImageSrc("");
+        if (!flipped) setCardImageSrc("");
       }, 3500);
     }, []);
 
