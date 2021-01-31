@@ -6,11 +6,12 @@ import cardBack from "../../../assets/images/card-back.png";
 
 const Card = forwardRef(
   ({ cardInfo: { id, imageSrc }, evaluateCards }, ref) => {
+    const [clickable, setClickable] = useState(false);
     const [flipped, setFlipped] = useState(false);
     const [cardImageSrc, setCardImageSrc] = useState(imageSrc);
 
     function handleCardFlip() {
-      if (!flipped) {
+      if (clickable && !flipped) {
         if (!cardImageSrc) {
           setCardImageSrc(imageSrc);
         }
@@ -21,7 +22,8 @@ const Card = forwardRef(
 
     useEffect(() => {
       setTimeout(() => {
-        if (!flipped) setCardImageSrc("");
+        setCardImageSrc("");
+        setClickable(true);
       }, 3500);
     }, []);
 
